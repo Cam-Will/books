@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Author Show</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-BmbxuPwQa2lc/FVzBcNJ7UAyJxM6wuqIj61tLrc4wSX0szH/Ev+nYRRuWlolflfl" crossorigin="anonymous">
+    <style>
+        *{
+            background-color: aliceblue;
+        }
+        #body{
+            display: flex;
+            justify-content: space-around;
+        }
+    </style>
+</head>
+<body>
+    <div id="body">
+        <div id="favside">
+            {%for author in author %}
+            <h1> {{author['name']}}'s Favorites</h1>
+            {% endfor %}
+            <table class="table table-sm table-success table-striped table-hover">
+                <thead>
+                    <tr>
+                        <th>Title: </th> 
+                        <th># of Pages: </th>
+                    </tr>
+                </thead>
+                {% for book in books %}
+                <tbody>
+                    <tr>
+                        <td>{{book['title']}} </td>
+                        <td>{{book['num_of_pages']}} </td>
+                    </tbody>
+                    {% endfor %}
+                </table>
+        </div>
+        <div id="addside">
+            <h1>Add Author's Favorite</h1>
+            <form action="/authors/<id>" method="POST">
+                <p>Book:  <select id= "menu" name="book">
+                    {% for bo in book %}
+                        <option value="{{bo['id']}}">{{bo['title']}}</option>
+                    {% endfor %}
+                </select></p>
+                <input id="create" type="submit" value="Add">
+            </form>
+        </div>
+    </div>
+    <a href="http://localhost:5000/authors">Home</a>
+</body>
+</html>

@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Books</title>
+    <style>
+        *{
+            background-color: aliceblue;
+        }
+        #body{
+            display: flex;
+            justify-content: space-around;
+        }
+        #newside{
+
+        }
+        #allside{
+
+        }
+        #box{
+            outline: dashed;
+            outline-color: forestgreen;
+            width: 350px;
+        }
+    </style>
+</head>
+<body>
+    <div id="body">
+        <div id="newside">
+            <h1>New Book</h1>
+            <form action="/books" method="post">
+                <p>Title:</p>
+                <p><input type="text" name="title"></p>
+                <p>Number of Pages:</p>
+                <p><input type="text" name="number"></p>
+                <input type="submit" value="Create">
+            </form>
+        </div>
+        <div id="allside">
+            <h1>All Books</h1>
+            <div id="box">
+                <p>
+                    {% for book in books %}
+                    <p><a href="http://localhost:5000/books/{{book['id']}}">{{book['title']}}</a></p>
+                    {% endfor %}
+                </p>
+            </div>
+            <a href="http://localhost:5000/authors">Home</a>
+            
+        </div>
+    </div>
+</body>
+</html>
